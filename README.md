@@ -86,6 +86,7 @@ This project uses Tweepy's tweet search method to search for tweets within the p
     password = <db pwd>
   }
 }
+
   ```
   
 *Note*: these are strings and must be enclosed in quotation marks.
@@ -109,6 +110,7 @@ Scala applications require `'application'.sbt` files that include the name of th
 
 **M1 Processor Issues** 
 * I had to find a compatible SDK to install sbt:
+
   ```
     curl -s "https://get.sdkman.io" | zsh 
     source "$HOME/.sdkman/bin/sdkman-init.sh" 
@@ -117,6 +119,7 @@ Scala applications require `'application'.sbt` files that include the name of th
     sdk install sbt
     sbt compile
   ```
+ 
 * Then finally run `sbt compile` on the command line from my project directory. 
 ### Common Tweet Streaming Issues:
 * Make sure any json file that is being used to store tweets is opened with the 'a' designator for 'append' or else each tweet will overwrite the last
@@ -128,14 +131,7 @@ Scala applications require `'application'.sbt` files that include the name of th
 This project uses Avilash Kumar's [TikTokAPI](https://github.com/avilash/TikTokAPI-Python). Refer to their GitHub for further information.
 
 ### Common TikTok Streaming Issues:
-<<<<<<< HEAD
-* Problems finding the installed module in code editor --> uninstall then reinstall 'from source' (as specified on the PyTikTokAPI GitHub - linked above) directly into project directory
-* Missing/deprecated dependencies for the API (esp. pyppeteer) --> install outside of virtual environment from source
-=======
-* Problems finding the installed modules in code editor --> uninstall then reinstall 'from source' (as specified on the PyTikTokAPI GitHub - linked above) directly into project directory
-* Issues with pyppeteer install --> make sure [latest version](https://github.com/pyppeteer/pyppeteer) is installed; using Conda saved my butt here: `conda install -c conda-forge pyppeteer`
-* No module `websockets` --> make sure to install the module using the -m command line flag
->>>>>>> 5a93bbb89da18b69716938cf0cc219c798b6f51f
+* Make sure you use only one installer (pip or conda or whatever) otherwise dependencies may be broken
 
 Check out this project's slide deck ⤵
 ![SM Political Analysis - 4 (2)](https://user-images.githubusercontent.com/65197541/131225593-367e0894-08d3-4fea-ab17-36f274e03c64.png)
