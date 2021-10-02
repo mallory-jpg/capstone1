@@ -30,7 +30,7 @@
     # Default organisation projects
     ORG_PROJECTS: # optional
 
--- 
+---
 
 name: CI
 
