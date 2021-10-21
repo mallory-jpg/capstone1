@@ -21,7 +21,7 @@ class TweetsListener(Listener):
     def __init__(self, csocket, logger=logging):
         self.client_socket = csocket
         self.logger = logging.basicConfig(filename='tweet_stream.log', filemode='w',
-                            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+                                          format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     def on_data(self, data):
         try:
@@ -29,7 +29,8 @@ class TweetsListener(Listener):
             msg = json.loads(data)
             logging.info('Twitter JSON data read')
             # JSON file 'text' contains actual tweet
-            print(msg['text'].encode('utf-8')) # encode to remove emojis & other symbols
+            # encode to remove emojis & other symbols
+            print(msg['text'].encode('utf-8'))
             # the actual tweet data is sent to the client socket
             self.client_socket.send(msg['text'].encode('utf-8'))
             logging.info('Tweet data sent to client socket')
@@ -37,13 +38,12 @@ class TweetsListener(Listener):
 
         except BaseException as e:
             # Error handling
-            logging(f"Exception : {str(e)}") # TODO file/module logging
+            logging(f"Exception : {str(e)}")  # TODO file/module logging
             print(f'Exception: {e}')
             return True
 
-    def on_error(self, status):
+    @staticmethod
+    def on_error(status):
         logging.error(status)
         print(f'Error: {status}')
         return True
-
-

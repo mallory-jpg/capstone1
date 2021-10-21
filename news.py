@@ -20,6 +20,7 @@ c.read('config.ini')
 
 news_api_key = c['newsAuth']['api_key']
 
+
 class News():
     """Extract keywords from  news articles to use as search values for TikTok & Twitter posts relating to the political event of interest. """
 
@@ -34,7 +35,7 @@ class News():
         'to': {date.today},
         'language': 'en',
         'sort_by': 'popularity'
-        }):
+    }):
         """
         Make call to NewsAPI to get most popular news from call date and 3 days prior
         :params: see params
@@ -89,7 +90,7 @@ class News():
     def get_top_headlines(self, params={
         "language": "en",
         "country": "us"
-        }):
+    }):
         """
         Make call to NewsAPI to get top headlines on call date
         :params: see params
@@ -179,7 +180,8 @@ class News():
 
         return self.all_news_df
 
-    def get_article_text(self, url):
+    @staticmethod
+    def get_article_text(url):
         """
         Clean & process news article text to prepare for keyword extraction
         :param url: url column of news dataframe
@@ -258,7 +260,7 @@ class News():
         tf_score.update((x, y/int(total_word_length))
                         for x, y in tf_score.items())  # TODO test - ZeroError
 
-        #calculate IDF for each word
+        # calculate IDF for each word
         idf_score = {}
         for each_word in total_words:
             each_word = each_word.replace('.', '')
@@ -279,7 +281,8 @@ class News():
 
         return tf_idf_score
 
-    def check_sent(self, word, sentences):
+    @staticmethod
+    def check_sent(word, sentences):
         """
         Check if word is present in sentence list for calculating IDF (Inverse Document Frequency)
         :param word: word to check sentence for presence of
@@ -291,7 +294,8 @@ class News():
 
         return int(len(sent_len))
 
-    def get_top_n(self, dict_elem, n):
+    @staticmethod
+    def get_top_n(dict_elem, n):
         """
         Calculate most important keywords in text of interest
         :param dict_elem: dictionary of important words & their tf_idf_scores
