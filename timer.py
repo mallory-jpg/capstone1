@@ -7,7 +7,7 @@ from typing import Any, ClassVar
 
 @dataclass()
 class Timer(ContextDecorator):
-    timers: ClassVar[dict] = dict()
+    timers: ClassVar[dict] = {}
     name: Any = None
     msg: Any = "Elapsed time: {:0.4f} seconds"
     logger: Any = logging.info
