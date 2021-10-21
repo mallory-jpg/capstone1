@@ -3,12 +3,14 @@
 import logging
 import numpy as np
 
+
 def read_hashtags(tag_list):
     """Tweet cleaning helper functions"""
     hashtags = []
     for tag in tag_list:
         hashtags.append(tag['text'])
     return hashtags
+
 
 def get_random_ua(browser):
     # make sure you've done: git clone https://github.com/tamimibrahim17/List-of-user-agents.git at this point so the txt files are in your directory
