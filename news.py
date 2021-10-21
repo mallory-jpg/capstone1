@@ -185,7 +185,6 @@ class News():
         :param url: url column of news dataframe
         :return a_text: article text (str)
         """
-
         contractions_dict = {"'s": " is", "n't": " not", "'m": " am", "'ll": " will",
                              "'d": " would", "'ve": " have", "'re": " are"}
         symbols_list = ['&', '+', '-', '/', '|', '$', '%', ':', '(', ')', '?']
@@ -231,7 +230,6 @@ class News():
         :param text: article text from which to extract keywords
         :return tf_idf_score: score dictionary for each keyword found in text
         """
-
         # make sure text is in string format for parsing
         text = str(text)
         stop_words = set(stopwords.words('english'))
