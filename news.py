@@ -202,11 +202,11 @@ class News():
         a_text = " ".join([s for s in re.split(
             "([A-Z][a-z]+[^A-Z]*)", a_text) if s])
         # remove mentions
-        a_text = re.sub("@\S+", " ", a_text)
+        a_text = re.sub(r"@\S+", " ", a_text)
         # remove URLs
-        a_text = re.sub("https*\S+", " ", a_text)
+        a_text = re.sub(r"https*\S+", " ", a_text)
         # remove hashtags
-        a_text = re.sub("#\S+", " ", a_text)
+        a_text = re.sub(r"#\S+", " ", a_text)
         # remove unicode characters
         a_text = a_text.encode('ascii', 'ignore').decode()
         # replace contractions
