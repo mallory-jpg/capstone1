@@ -179,7 +179,8 @@ class News():
 
         return self.all_news_df
 
-    def get_article_text(self, url):
+    @staticmethod
+    def get_article_text(url):
         """
         Clean & process news article text to prepare for keyword extraction
         :param url: url column of news dataframe
@@ -279,7 +280,8 @@ class News():
 
         return tf_idf_score
 
-    def check_sent(self, word, sentences):
+    @staticmethod
+    def check_sent(word, sentences):
         """
         Check if word is present in sentence list for calculating IDF (Inverse Document Frequency)
         :param word: word to check sentence for presence of
@@ -291,7 +293,8 @@ class News():
 
         return int(len(sent_len))
 
-    def get_top_n(self, dict_elem, n):
+    @staticmethod
+    def get_top_n(dict_elem, n):
         """
         Calculate most important keywords in text of interest
         :param dict_elem: dictionary of important words & their tf_idf_scores

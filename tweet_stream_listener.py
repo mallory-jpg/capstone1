@@ -41,7 +41,8 @@ class TweetsListener(Listener):
             print(f'Exception: {e}')
             return True
 
-    def on_error(self, status):
+    @staticmethod
+    def on_error(status):
         logging.error(status)
         print(f'Error: {status}')
         return True
