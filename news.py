@@ -26,7 +26,7 @@ class News():
     def __init__(self, api_key, logger=logging):
         self.api_key = api_key
         self.logger = logging.basicConfig(filename='news.log', filemode='w',
-                                          format=f'%(asctime)s - %(levelname)s - %(message)s')
+                                          format='%(asctime)s - %(levelname)s - %(message)s')
 
     def request_pop_news(self, params={
         'q': ['politics' or 'political' or 'law' or 'legal' or 'policy'],

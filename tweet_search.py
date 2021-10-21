@@ -29,7 +29,7 @@ class Tweets():
     
     def __init__(self, consumer_key, consumer_secret, access_token, access_token_secret, logger=logging):
         self.logger = logging.basicConfig(filename='tweets.log', filemode='w',
-                                          format=f'%(asctime)s - %(levelname)s - %(message)s')
+                                          format='%(asctime)s - %(levelname)s - %(message)s')
         self.consumer_key = consumer_key
         self.consumer_secret = consumer_secret
         self.access_token = access_token

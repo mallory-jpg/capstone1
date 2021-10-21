@@ -29,7 +29,7 @@ class TikToks(TikTokAPI):
         self.cookie = cookie
         self.tiktok_count = 0
         self.logger = logging.basicConfig(filename='tiktok.log', filemode='w',
-                                          format=f'%(asctime)s - %(levelname)s - %(message)s')
+                                          format='%(asctime)s - %(levelname)s - %(message)s')
     def getVideosByHashtag(self, hashtags, count=3000):
         try:
             for hashTag in hashtags:

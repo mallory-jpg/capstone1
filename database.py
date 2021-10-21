@@ -123,7 +123,7 @@ class DataBase():
         self.user_name = user_name
         self.user_password = user_password
         self.logger = logging.basicConfig(filename='db.log', filemode='w',
-                                          format=f'%(asctime)s - %(levelname)s - %(message)s')
+                                          format='%(asctime)s - %(levelname)s - %(message)s')
 
     def create_server_connection(self):
         """
