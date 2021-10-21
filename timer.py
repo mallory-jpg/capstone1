@@ -5,6 +5,7 @@ import logging
 from dataclasses import dataclass, field
 from typing import Any, ClassVar
 
+
 @dataclass()
 class Timer(ContextDecorator):
     timers: ClassVar[dict] = {}
