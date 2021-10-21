@@ -28,18 +28,20 @@ class News():
         self.logger = logging.basicConfig(filename='news.log', filemode='w',
                                           format=f'%(asctime)s - %(levelname)s - %(message)s')
 
-    def request_pop_news(self, params={
-        'q': ['politics' or 'political' or 'law' or 'legal' or 'policy'],
-        'from': {date.today() - timedelta(days=3)},
-        'to': {date.today},
-        'language': 'en',
-        'sort_by': 'popularity'
-        }):
+    def request_pop_news(self, params=None):
         """
         Make call to NewsAPI to get most popular news from call date and 3 days prior
         :params: see params
         :return pop_news: pandas dataframe
         """
+        if params is None:
+            params = {
+                'q': ['politics' or 'political' or 'law' or 'legal' or 'policy'],
+                'from': {date.today() - timedelta(days=3)},
+                'to': {date.today},
+                'language': 'en',
+                'sort_by': 'popularity'
+                }
         pop_news = []
         self.params = params
 
@@ -86,15 +88,17 @@ class News():
 
         return pop_news
 
-    def get_top_headlines(self, params={
-        "language": "en",
-        "country": "us"
-        }):
+    def get_top_headlines(self, params=None):
         """
         Make call to NewsAPI to get top headlines on call date
         :params: see params
         :return top_headlines: pandas dataframe
         """
+        if params is None:
+            params = {
+                "language": "en",
+                "country": "us"
+                }
         top_headlines = []
         self.params = params
 
