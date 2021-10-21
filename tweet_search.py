@@ -84,9 +84,9 @@ class Tweets():
                     search_tweet_count = len(tweet)
                                 #self.file.write(json.dumps(tweets)+ '\\n')
                     tweet = json.dumps(tweet)  # tweet to json string
-                    assert (type(tweet) == str), "Tweet must be converted to JSON string"
+                    assert (type(tweet) is str), "Tweet must be converted to JSON string"
                     tweet = json.loads(tweet)  # tweet to dict
-                    assert (type(tweet) == dict), "Tweet must be converted from JSON string to type dict"
+                    assert (type(tweet) is dict), "Tweet must be converted from JSON string to type dict"
                 except (TypeError) as e:
                     logging('Error: ', e)
                     print('Error: keyword not found in tweet search')
