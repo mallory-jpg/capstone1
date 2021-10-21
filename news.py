@@ -286,7 +286,7 @@ class News():
         :param sentences: list of sentences to check for word
         :return result: number of sentences word is in
         """
-        final = [all([w in x for w in word]) for x in sentences]
+        final = [all(w in x for w in word) for x in sentences]
         sent_len = [sentences[i] for i in range(0, len(final)) if final[i]]
 
         return int(len(sent_len))
