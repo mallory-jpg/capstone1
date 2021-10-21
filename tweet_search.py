@@ -42,7 +42,6 @@ class Tweets():
     def tweepy_auth(self):
         """Authorize tweepy API
         :return self.api: authorized tweepy api object"""
-
         self.auth = tweepy.OAuthHandler(self.consumer_key, self.consumer_secret)
         self.auth.set_access_token(self.access_token, self.access_token_secret)
 
