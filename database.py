@@ -117,13 +117,14 @@ alter_tiktok_stats_table = """
         ON DELETE SET NULL;
     """
 
+
 class DataBase():
     def __init__(self, host_name, user_name, user_password, logger=logging):
         self.host_name = host_name
         self.user_name = user_name
         self.user_password = user_password
         self.logger = logging.basicConfig(filename='db.log', filemode='w',
-                                          format=f'%(asctime)s - %(levelname)s - %(message)s')
+                                          format='%(asctime)s - %(levelname)s - %(message)s')
 
     def create_server_connection(self):
         """
@@ -152,10 +153,10 @@ class DataBase():
         self.connection = connection
         cursor = connection.cursor()
         try:
-                cursor.execute(query)
-                logging.info("Database created successfully")
+            cursor.execute(query)
+            logging.info("Database created successfully")
         except Error as err:
-                logging.error(f"Error: '{err}'")
+            logging.error(f"Error: '{err}'")
 
     def create_db_connection(self, db_name):
         """
@@ -165,16 +166,16 @@ class DataBase():
         self.db_name = db_name
         self.connection = None
         try:
-                self.connection = psycopg2.connect(
-                    host=self.host_name,
-                    user=self.user_name,
-                    password=self.user_password,
-                    database=self.db_name
-                )
-                # cursor = connection.cursor()
-                logging.info("PostgreSQL Database connection successful")
+            self.connection = psycopg2.connect(
+                host=self.host_name,
+                user=self.user_name,
+                password=self.user_password,
+                database=self.db_name
+            )
+            # cursor = connection.cursor()
+            logging.info("PostgreSQL Database connection successful")
         except Error as err:
-                logging.error(f"Error: '{err}'")
+            logging.error(f"Error: '{err}'")
 
         return self.connection
 
@@ -188,11 +189,11 @@ class DataBase():
         self.connection = connection
         cursor = connection.cursor()
         try:
-                cursor.execute(query)
-                self.connection.commit()
-                logging.info("Query successful")
+            cursor.execute(query)
+            self.connection.commit()
+            logging.info("Query successful")
         except Error as err:
-                print(f"Error: '{err}'")
+            print(f"Error: '{err}'")
 
     def read_query(self, connection, query):
         """
@@ -243,4 +244,3 @@ class DataBase():
         logging.info("execute_mogrify() done")
         cursor.close()
         conn.close()
-

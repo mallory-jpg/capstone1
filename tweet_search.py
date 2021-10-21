@@ -25,11 +25,12 @@ news = News(news_api_key)
 # get all news - takes about 30 seconds
 news.get_all_news()
 
+
 class Tweets():
-    
+
     def __init__(self, consumer_key, consumer_secret, access_token, access_token_secret, logger=logging):
         self.logger = logging.basicConfig(filename='tweets.log', filemode='w',
-                                          format=f'%(asctime)s - %(levelname)s - %(message)s')
+                                          format='%(asctime)s - %(levelname)s - %(message)s')
         self.consumer_key = consumer_key
         self.consumer_secret = consumer_secret
         self.access_token = access_token
@@ -43,11 +44,13 @@ class Tweets():
         """Authorize tweepy API
         :return self.api: authorized tweepy api object"""
 
-        self.auth = tweepy.OAuthHandler(self.consumer_key, self.consumer_secret)
+        self.auth = tweepy.OAuthHandler(
+            self.consumer_key, self.consumer_secret)
         self.auth.set_access_token(self.access_token, self.access_token_secret)
 
         # create API object
-        self.api = API(self.auth, wait_on_rate_limit=True) # user_agent=get_random_ua('Chrome'), wait_on_rate_limit_notify=True)
+        # user_agent=get_random_ua('Chrome'), wait_on_rate_limit_notify=True)
+        self.api = API(self.auth, wait_on_rate_limit=True)
 
         try:
             self.api.verify_credentials()
@@ -57,7 +60,7 @@ class Tweets():
             logging.error(f"Error during Tweepy authentication: {e}")
             raise e
         return self.api
-    
+
     # def get_tweets(self, news_keywords, news_instance): # TODO add stream listening stuff to params
     #     searched_tweets = self.tweet_search(news_keywords)
         # stream_tweets = TwitterStreamListener.on_status(listener, tweet_stream)
@@ -76,17 +79,19 @@ class Tweets():
             for word in keywords:
                 try:
                     result = api.search(q=str(
-                                    word) + " -filter:retweets", lang='en')
+                        word) + " -filter:retweets", lang='en')
                     # print(type(result))
                     status = result[0]
                     # print(type(status))
                     tweet = status._json
                     search_tweet_count = len(tweet)
-                                #self.file.write(json.dumps(tweets)+ '\\n')
+                    #self.file.write(json.dumps(tweets)+ '\\n')
                     tweet = json.dumps(tweet)  # tweet to json string
-                    assert (type(tweet) == str), "Tweet must be converted to JSON string"
+                    assert (type(tweet) ==
+                            str), "Tweet must be converted to JSON string"
                     tweet = json.loads(tweet)  # tweet to dict
-                    assert (type(tweet) == dict), "Tweet must be converted from JSON string to type dict"
+                    assert (
+                        type(tweet) == dict), "Tweet must be converted from JSON string to type dict"
                 except (TypeError) as e:
                     logging('Error: ', e)
                     print('Error: keyword not found in tweet search')
@@ -98,16 +103,13 @@ class Tweets():
         logging.info('Tweet search successful')
         print('Tweet search by keyword was successful')
 
-        #finally:
+        # finally:
         # TODO add tweet unpacking & cleaning?
-        #pass
+        # pass
         # TODO put tweets into db
         # TODO
-    
+
     def clean_tweets(self, tweets):
         # use slang.txt
         # https://www.geeksforgeeks.org/python-efficient-text-data-cleaning/
         pass
-
-
-

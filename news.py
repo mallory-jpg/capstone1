@@ -20,13 +20,14 @@ c.read('config.ini')
 
 news_api_key = c['newsAuth']['api_key']
 
+
 class News():
     """Extract keywords from  news articles to use as search values for TikTok & Twitter posts relating to the political event of interest. """
 
     def __init__(self, api_key, logger=logging):
         self.api_key = api_key
         self.logger = logging.basicConfig(filename='news.log', filemode='w',
-                                          format=f'%(asctime)s - %(levelname)s - %(message)s')
+                                          format='%(asctime)s - %(levelname)s - %(message)s')
 
     def request_pop_news(self, params={
         'q': ['politics' or 'political' or 'law' or 'legal' or 'policy'],
@@ -34,7 +35,7 @@ class News():
         'to': {date.today},
         'language': 'en',
         'sort_by': 'popularity'
-        }):
+    }):
         """
         Make call to NewsAPI to get most popular news from call date and 3 days prior
         :params: see params
@@ -89,7 +90,7 @@ class News():
     def get_top_headlines(self, params={
         "language": "en",
         "country": "us"
-        }):
+    }):
         """
         Make call to NewsAPI to get top headlines on call date
         :params: see params
@@ -258,7 +259,7 @@ class News():
         tf_score.update((x, y/int(total_word_length))
                         for x, y in tf_score.items())  # TODO test - ZeroError
 
-        #calculate IDF for each word
+        # calculate IDF for each word
         idf_score = {}
         for each_word in total_words:
             each_word = each_word.replace('.', '')
