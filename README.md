@@ -133,6 +133,29 @@ This project uses Avilash Kumar's [TikTokAPI](https://github.com/avilash/TikTokA
 ### Common TikTok Streaming Issues:
 * Make sure you use only one installer (pip or conda or whatever) otherwise dependencies may be broken
 
+## API
+### Development
+**Technology**
+* GraphQL: more efficient than REST due to compound requests pulling data in one lump sum
+**Security**
+* Rate-limiting factor
+* Firewall
+* TLS encryption
+
+**Performance**
+* Caching
+
+### Testing
+* Testing in isolation for funtionality, reliability, latency, performance, security, etc.
+* Testing with JSON payloads over HTTP, HTTPS, JMS, & MQ
+* Unit testing: individual operations of API in logical unit divisions to ID imperfections in early stages
+* Functional testing: testing all functions in codebase, using unit tests as building blocks
+* Load testing: validating functionality and performance under load to ensure it will work as expected with multiple concurrent users
+* Runtime error detection: monitoring API by running it in its entirety to check for errors, exceptions, and prevent resource leaks
+* Security testing: checking for external threats, validation, access control, and data encryption
+* Penetration testing: to find vulnerabilities in system or codebase that could be exploited by attackers, testing vulnerability of functions and security assets
+* Fuzz testing: utilizes random input data (aka fuzz) to rest reliability and ensure reliability in worst-case
+
 Check out this project's slide deck ⤵
 ![SM Political Analysis - 4 (2)](https://user-images.githubusercontent.com/65197541/131225593-367e0894-08d3-4fea-ab17-36f274e03c64.png)
 ![SM Political Analysis - 4 (4)](https://user-images.githubusercontent.com/65197541/131225599-038ec36c-d644-4f60-a8f2-0bd43ade94df.png)
