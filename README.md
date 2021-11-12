@@ -58,6 +58,7 @@ Clone the following url into your project directory using Git or checkout with S
 5. On the resulting screen, look for `s_v_web_id` and `tt_web_id` under the 'name' column
 
 Find more information about `.ini` configuration files in Python documentation: `https://docs.python.org/3/library/configparser.html`
+
 ![SM Political Analysis - 4 (2)](https://user-images.githubusercontent.com/65197541/131225593-367e0894-08d3-4fea-ab17-36f274e03c64.png)
 
 ## Exploratory Data Analysis
