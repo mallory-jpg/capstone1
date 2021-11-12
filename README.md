@@ -48,6 +48,8 @@ _How can we better develop educational materials to meet kids where they are?_
 ### To scrape the web without getting blocked:
 Clone the following url into your project directory using Git or checkout with SVN: `https://github.com/tamimibrahim17/List-of-user-agents.git`. These .txt files contain User Agents and are specified by browser (shout out [Timam Ibrahim](https://github.com/tamimibrahim17)!). They will be randomized to avoid detection by web browsers.
 
+![SM Political Analysis - 4 (7)](https://user-images.githubusercontent.com/65197541/131225638-ba49f6d7-a3e1-46bc-8b54-a71b319b8990.png)
+
 ### To find your `s_v_web_id` & `tt_web_id` for TikTokAPI access:
 1. Go to the TikTok website & login
 2. If using Google Chrome, open the developer console 
@@ -59,6 +61,8 @@ Find more information about `.ini` configuration files in Python documentation: 
 ![SM Political Analysis - 4 (2)](https://user-images.githubusercontent.com/65197541/131225593-367e0894-08d3-4fea-ab17-36f274e03c64.png)
 
 ## Exploratory Data Analysis
+
+![SM Political Analysis - 4 (4)](https://user-images.githubusercontent.com/65197541/131225599-038ec36c-d644-4f60-a8f2-0bd43ade94df.png)
 
 This step was guided by my anticipation that the data will be used for trend graphing, sentiment analysis, age inference, and correlation between user characteristics and extent of participation in responding to political events. With this in mind, I plan to optimize query speed via limiting storage by geographic location of both users and events to the US (though this categorization may be loose at times because of US involvement on the world stage). My PostgreSQL database will also be sharded by datetime, as the analytical window references 3 days before and 3 days after the political event of interest.
 
@@ -159,8 +163,8 @@ This project uses Avilash Kumar's [TikTokAPI](https://github.com/avilash/TikTokA
 
 Check out this project's slide deck ⤵
 
-![SM Political Analysis - 4 (4)](https://user-images.githubusercontent.com/65197541/131225599-038ec36c-d644-4f60-a8f2-0bd43ade94df.png)
-![SM Political Analysis - 4 (7)](https://user-images.githubusercontent.com/65197541/131225638-ba49f6d7-a3e1-46bc-8b54-a71b319b8990.png)
+
+
 ![SM Political Analysis - 4 (8)](https://user-images.githubusercontent.com/65197541/131225639-88301e11-ed3c-4ab0-8b11-2cbd95d0677c.png)
 ![SM Political Analysis - 4 (9)](https://user-images.githubusercontent.com/65197541/131225641-d1427eb3-439e-4691-9f3d-9eb9b7cbc2b8.png)
 ![SM Political Analysis - 4 (10)](https://user-images.githubusercontent.com/65197541/131225642-20b9ca15-5777-474a-a13d-0693c7b74db3.png)
