@@ -66,14 +66,22 @@ Find more information about `.ini` configuration files in Python documentation: 
 
 This step was guided by my anticipation that the data will be used for trend graphing, sentiment analysis, age inference, and correlation between user characteristics and extent of participation in responding to political events. With this in mind, I plan to optimize query speed via limiting storage by geographic location of both users and events to the US (though this categorization may be loose at times because of US involvement on the world stage). My PostgreSQL database will also be sharded by datetime, as the analytical window references 3 days before and 3 days after the political event of interest.
 
-At this point, I've found that my GET requests for popular news articles return various formats which must be converted, unpacked, or otherwise transformed. ~Because of this added step, I opted to keep the article text in a separate table within the database.~ The article text in the news table will serve as data sources from which to extract our top 3 keywords (per article) using Term Frequency-Inverse Document Frequency (TF-IDF) calculations. These keywords will be applied to our searches for related TikToks and tweets. For some resources on this, check out
+The article text in the news table will serve as data sources from which to extract our top 3 keywords (per article) using Term Frequency-Inverse Document Frequency (TF-IDF) calculations. These keywords will be applied to our searches for related TikToks and tweets. For some resources on this, check out
 [TF-IDF in the real world](https://towardsdatascience.com/tf-idf-for-document-ranking-from-scratch-in-python-on-real-world-dataset-796d339a4089) and [a step-by-step guide by Prachi Prakash](https://www.analyticsvidhya.com/blog/2020/11/words-that-matter-a-simple-guide-to-keyword-extraction-in-python/).
 
+![SM Political Analysis - 4 (10)](https://user-images.githubusercontent.com/65197541/131225642-20b9ca15-5777-474a-a13d-0693c7b74db3.png)
+
+![SM Political Analysis - 4 (11)](https://user-images.githubusercontent.com/65197541/131225643-0ff23457-eada-4b2a-98d0-256e8ecd5df7.png)
+
 With data from social media adding a pop-cultural context to political news, we inch closer to an understanding of TikTok and Twitter as novel forms of youth political engagement!
+
+![SM Political Analysis - 4 (12)](https://user-images.githubusercontent.com/65197541/131225654-089ce37f-7f7d-42b9-8972-5dba199252f8.png)
 
 ## Getting Tweets
 
 This project uses Tweepy's tweet search method to search for tweets within the past seven (7) days using the keywords produced from the `.get_all_news()` method. A separate Tweepy Stream Listener subclass catches tweets (statuses) that contain our keywords of interest as they are tweeted. The max stream rate for Twitter's API (upon which Tweepy is based) is 450.
+
+![SM Political Analysis - 4 (8)](https://user-images.githubusercontent.com/65197541/131225639-88301e11-ed3c-4ab0-8b11-2cbd95d0677c.png) ![SM Political Analysis - 4 (9)](https://user-images.githubusercontent.com/65197541/131225641-d1427eb3-439e-4691-9f3d-9eb9b7cbc2b8.png)
 
 ### Setting Up Kafka Streaming Application (Scala ==> Python)
 `application.conf` file should look like:
@@ -138,6 +146,7 @@ This project uses Avilash Kumar's [TikTokAPI](https://github.com/avilash/TikTokA
 ### Common TikTok Streaming Issues:
 * Make sure you use only one installer (pip or conda or whatever) otherwise dependencies may be broken
 
+
 ## API
 ### Development
 **Technology**
@@ -161,12 +170,3 @@ This project uses Avilash Kumar's [TikTokAPI](https://github.com/avilash/TikTokA
 * Penetration testing: to find vulnerabilities in system or codebase that could be exploited by attackers, testing vulnerability of functions and security assets
 * Fuzz testing: utilizes random input data (aka fuzz) to rest reliability and ensure reliability in worst-case
 
-Check out this project's slide deck ⤵
-
-
-
-![SM Political Analysis - 4 (8)](https://user-images.githubusercontent.com/65197541/131225639-88301e11-ed3c-4ab0-8b11-2cbd95d0677c.png)
-![SM Political Analysis - 4 (9)](https://user-images.githubusercontent.com/65197541/131225641-d1427eb3-439e-4691-9f3d-9eb9b7cbc2b8.png)
-![SM Political Analysis - 4 (10)](https://user-images.githubusercontent.com/65197541/131225642-20b9ca15-5777-474a-a13d-0693c7b74db3.png)
-![SM Political Analysis - 4 (11)](https://user-images.githubusercontent.com/65197541/131225643-0ff23457-eada-4b2a-98d0-256e8ecd5df7.png)
-![SM Political Analysis - 4 (12)](https://user-images.githubusercontent.com/65197541/131225654-089ce37f-7f7d-42b9-8972-5dba199252f8.png)
