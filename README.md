@@ -56,6 +56,7 @@ Clone the following url into your project directory using Git or checkout with S
 5. On the resulting screen, look for `s_v_web_id` and `tt_web_id` under the 'name' column
 
 Find more information about `.ini` configuration files in Python documentation: `https://docs.python.org/3/library/configparser.html`
+![SM Political Analysis - 4 (2)](https://user-images.githubusercontent.com/65197541/131225593-367e0894-08d3-4fea-ab17-36f274e03c64.png)
 
 ## Exploratory Data Analysis
 
@@ -157,7 +158,7 @@ This project uses Avilash Kumar's [TikTokAPI](https://github.com/avilash/TikTokA
 * Fuzz testing: utilizes random input data (aka fuzz) to rest reliability and ensure reliability in worst-case
 
 Check out this project's slide deck ⤵
-![SM Political Analysis - 4 (2)](https://user-images.githubusercontent.com/65197541/131225593-367e0894-08d3-4fea-ab17-36f274e03c64.png)
+
 ![SM Political Analysis - 4 (4)](https://user-images.githubusercontent.com/65197541/131225599-038ec36c-d644-4f60-a8f2-0bd43ade94df.png)
 ![SM Political Analysis - 4 (7)](https://user-images.githubusercontent.com/65197541/131225638-ba49f6d7-a3e1-46bc-8b54-a71b319b8990.png)
 ![SM Political Analysis - 4 (8)](https://user-images.githubusercontent.com/65197541/131225639-88301e11-ed3c-4ab0-8b11-2cbd95d0677c.png)
