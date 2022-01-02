@@ -1,9 +1,19 @@
 from TikTokAPI import TikTokAPI
 import configparser
+# import nest_asyncio
 import pandas as pd
 from news import *
 from database import *
 
+# nest_asyncio.apply()
+# __import__('IPython').embed()
+
+# {'statusCode': 0,
+#     'challengeInfo': {'challenge': {'id': '245733', 'title': 'jeopardy', 'desc': '', 'profileThumb': '', 'profileMedium': '', 'profileLarger': '', 'coverThumb': '', 'coverMedium': '', 'coverLarger': '', 'isCommerce': False, 'splitTitle': 'jeopardy'},
+#     'stats': {'videoCount': 9833, 'viewCount': 179900000},
+#     'challengeAnnouncement': {'body': '', 'title': ''}},
+#     'shareMeta': {'title': '#jeopardy on TikTok', 'desc': '179.0m views - Watch awesome short videos created with trending hashtag #jeopardy'}
+#     }
 
 c = configparser.ConfigParser()
 c.read('sm-political-analysis/config.ini')
@@ -22,7 +32,11 @@ tiktok_auth = {
     "tt_webid": tiktok_tt_id
 }
 
-class TikToks(TikTokAPI):
+class TikTokAPI(TikTokAPI):
+
+    # create db connection for mogrify
+    # DATABASE = DataBase(host, username, password)
+    # CXN = DATABASE.create_db_connection(db)
 
     def __init__(self, cookie, logger=logging, api=None):
         super(TikTokAPI, self).__init__()
@@ -60,8 +74,7 @@ class TikToks(TikTokAPI):
                     for key, val in self.default_params.items():
                             params[key] = val
                     extra_headers = {
-                            "Referer": "https://www.tiktok.com/tag/" + str(hashTag)
-                            }
+                            "Referer": "https://www.tiktok.com/tag/" + str(hashTag)}
                     self.tiktok_count += 1
                     tok = self.send_get_request(url, params, extra_headers=extra_headers)
                     # write tiktoks to json file
@@ -75,12 +88,3 @@ class TikToks(TikTokAPI):
             self.tiktok_df = pd.read_json('tiktoks.json') # columns=['postID', 'createTime', 'userID', 'description', 'musicId', 'soundId', 'tags'])
             logging.info(f'This run scraped {self.tiktok_count} TikToks')
             return self.tiktok_df
-
-# instantiate news class
-# news = News(news_api_key)
-# news_df = news.get_all_news() # TODO assert that df has information in it
-
-# # instantiate TikTok API
-# api = TikTokAPI(cookie=tiktok_auth)
-# api.tiktok_df = news_df['keywords'].map(api.getVideosByHashtag)
-
