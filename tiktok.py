@@ -32,6 +32,7 @@ tiktok_auth = {
     "tt_webid": tiktok_tt_id
 }
 
+
 class TikTokAPI(TikTokAPI):
 
     # create db connection for mogrify
@@ -44,6 +45,7 @@ class TikTokAPI(TikTokAPI):
         self.tiktok_count = 0
         self.logger = logging.basicConfig(filename='tiktok.log', filemode='w',
                                           format=f'%(asctime)s - %(levelname)s - %(message)s')
+
     def getVideosByHashtag(self, hashtags, count=3000):
         try:
             for hashTag in hashtags:
@@ -59,24 +61,25 @@ class TikTokAPI(TikTokAPI):
                     req_default_params = {
                         "secUid": "",
                         "type": "3",
-                            "minCursor": "0",
-                            "maxCursor": "0",
-                            "shareUid": "",
-                            "recType": ""
-                        }
+                        "minCursor": "0",
+                        "maxCursor": "0",
+                        "shareUid": "",
+                        "recType": ""
+                    }
                     params = {
                         "challengeID": str(hashTag_id),
-                            "count": str(count),
-                            "cursor": "0",
-                        }
+                        "count": str(count),
+                        "cursor": "0",
+                    }
                     for key, val in req_default_params.items():
-                            params[key] = val
+                        params[key] = val
                     for key, val in self.default_params.items():
-                            params[key] = val
+                        params[key] = val
                     extra_headers = {
-                            "Referer": "https://www.tiktok.com/tag/" + str(hashTag)}
+                        "Referer": "https://www.tiktok.com/tag/" + str(hashTag)}
                     self.tiktok_count += 1
-                    tok = self.send_get_request(url, params, extra_headers=extra_headers)
+                    tok = self.send_get_request(
+                        url, params, extra_headers=extra_headers)
                     # write tiktoks to json file
                     with open("tiktoks.json", "a") as f:
                         json.dump(tok, f)
@@ -85,6 +88,7 @@ class TikTokAPI(TikTokAPI):
         except KeyboardInterrupt as ex:
             raise ex
         finally:
-            self.tiktok_df = pd.read_json('tiktoks.json') # columns=['postID', 'createTime', 'userID', 'description', 'musicId', 'soundId', 'tags'])
+            # columns=['postID', 'createTime', 'userID', 'description', 'musicId', 'soundId', 'tags'])
+            self.tiktok_df = pd.read_json('tiktoks.json')
             logging.info(f'This run scraped {self.tiktok_count} TikToks')
             return self.tiktok_df
