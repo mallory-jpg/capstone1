@@ -27,7 +27,7 @@ from tweepy import API, Stream
 from database import *
 from news import *
 from tiktok import *
-from tweet_search import *
+from tweets import *
 
 c = configparser.ConfigParser()
 c.read('config.ini')
