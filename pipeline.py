@@ -49,7 +49,7 @@ consumer_key = c['twitterAuth']['consumer_key']
 consumer_secret = c['twitterAuth']['consumer_secret']
 
 logging.basicConfig(filename='pyPipeline.log', filemode='w',
-                                  format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 if '__name__' == '__main__':
 
@@ -115,7 +115,8 @@ if '__name__' == '__main__':
     print("Received request from: " + str(addr))
 
     # instantiate Tweets class
-    t = Tweets(consumer_key, consumer_secret, access_token, access_token_secret)
+    t = Tweets(consumer_key, consumer_secret,
+               access_token, access_token_secret)
     # authenticate Tweepy
     auth = t.tweepy_auth()
     logging.info('Tweepy authenticated')
