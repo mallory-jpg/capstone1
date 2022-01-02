@@ -1,25 +1,37 @@
 # Social Media Political Analysis 🇺🇸
+
 ### Springboard Open-ended Capstone
+
 ![SM Political Analysis - 4](https://user-images.githubusercontent.com/65197541/131225592-9e8dd0a0-1750-408f-93d8-72ca04e88e1a.png)
+
 ## Objectives
+
 ### Problems & Questions
+
 _How can we better develop educational materials to meet kids where they are?_
+
 * Is it worth it to spend money to advertise to youth for political campaigns - are they engaging with current events?
 * What politics & policies are The Youth™ talking about & why?
 
 ### Goals
+
 * to analyze how age/youth impacts political indoctrination and participation
 * to track social impacts of political events
 * to understand colloquial knowledge of political concepts
 
-### Overview:
+### Overview
+
 1. [x] Use NewsAPI to find top news by day
 2. [x] Parse news story title & article into individual words/phrases
 3. [x] Count most important individual words & phrases
 4. [x]  Use top 3 most important words & phrases to search TikTok & Twitter
 5. [x]  Count number of tweets & TikToks mentioning key words & phrases
 
+* I used **Snowflake** because of its proficiency as a batch-loading data warehouse
+*  
+
 ## Installation & Use
+
 `config.ini` should have the following layout and info:
 
   ```
@@ -42,19 +54,21 @@ _How can we better develop educational materials to meet kids where they are?_
     consumer_key = <consumer_key>
     consumer_secret = <consumer_secret>
   ```
+
   *Note*: headers and keys/variables in config.ini file don't need to be stored as strings, but when calling them in program, enclose references with quotes
 
+### To scrape the web without getting blocked
 
-### To scrape the web without getting blocked:
 Clone the following url into your project directory using Git or checkout with SVN: `https://github.com/tamimibrahim17/List-of-user-agents.git`. These .txt files contain User Agents and are specified by browser (shout out [Timam Ibrahim](https://github.com/tamimibrahim17)!). They will be randomized to avoid detection by web browsers.
 
 ![SM Political Analysis - 4 (7)](https://user-images.githubusercontent.com/65197541/131225638-ba49f6d7-a3e1-46bc-8b54-a71b319b8990.png)
 
-### To find your `s_v_web_id` & `tt_web_id` for TikTokAPI access:
+### To find your `s_v_web_id` & `tt_web_id` for TikTokAPI access
+
 1. Go to the TikTok website & login
-2. If using Google Chrome, open the developer console 
-3. Go to the 'Application' tab 
-4. Find & click 'Cookies' in the left-hand panel → 
+2. If using Google Chrome, open the developer console
+3. Go to the 'Application' tab
+4. Find & click 'Cookies' in the left-hand panel →
 5. On the resulting screen, look for `s_v_web_id` and `tt_web_id` under the 'name' column
 
 Find more information about `.ini` configuration files in Python documentation: `https://docs.python.org/3/library/configparser.html`
@@ -85,6 +99,7 @@ This project uses Tweepy's tweet search method to search for tweets within the p
 ![SM Political Analysis - 4 (8)](https://user-images.githubusercontent.com/65197541/131225639-88301e11-ed3c-4ab0-8b11-2cbd95d0677c.png) ![SM Political Analysis - 4 (9)](https://user-images.githubusercontent.com/65197541/131225641-d1427eb3-439e-4691-9f3d-9eb9b7cbc2b8.png)
 
 ### Setting Up Kafka Streaming Application (Scala ==> Python)
+
 `application.conf` file should look like:
 
   ```
@@ -104,6 +119,7 @@ This project uses Tweepy's tweet search method to search for tweets within the p
   ```
   
 *Note*: these are strings and must be enclosed in quotation marks.
+
 * Make sure you customize your connection string url to the database you use
 * The tweetStream Python class invoked in my pipeline includes a Kafka broker: `self.producer = KakfaProducer(bootstrap_servers='localhost')`
 * The broker & the Kafka streaming application are two separate files & entities
@@ -119,10 +135,11 @@ Scala applications require `'application'.sbt` files that include the name of th
 
     libraryDependencies += "org.apache.spark" %% "spark-core" % "3.1.1"
     ```
-    
+
 * Find your Spark version by using `spark-submit --version` on the command line.
 
-**M1 Processor Issues** 
+**M1 Processor Issues**
+
 * I had to find a compatible SDK to install sbt:
 
   ```
@@ -133,34 +150,41 @@ Scala applications require `'application'.sbt` files that include the name of th
     sdk install sbt
     sbt compile
   ```
- 
-* Then finally run `sbt compile` on the command line from my project directory. 
-### Common Tweet Streaming Issues:
+
+* Then finally run `sbt compile` on the command line from my project directory.
+
+### Common Tweet Streaming Issues
+
 * Make sure any json file that is being used to store tweets is opened with the 'a' designator for 'append' or else each tweet will overwrite the last
 * If sbt won't compile, ensure that your .sbt file dependencies are the correct versions
-* Make sure your application directory mirrors what is found in the [Spark documentation](http://spark.apache.org/docs/1.2.0/quick-start.html#self-contained-applications) so it can compile properly. 
+* Make sure your application directory mirrors what is found in the [Spark documentation](http://spark.apache.org/docs/1.2.0/quick-start.html#self-contained-applications) so it can compile properly.
 
 ## Getting TikToks
 
 This project uses Avilash Kumar's [TikTokAPI](https://github.com/avilash/TikTokAPI-Python). Refer to their GitHub for further information.
 
-### Common TikTok Streaming Issues:
+### Common TikTok Streaming Issues
+
 * Make sure you use only one installer (pip or conda or whatever) otherwise dependencies may be broken
 
-
 ## API
+
 ### Development
+
 **Technology**
+
 * GraphQL: more efficient than REST due to compound requests pulling data in one lump sum
 **Security**
-* Rate-limiting factor
+* Rate-limiting factors
 * Firewall
 * TLS encryption
 
 **Performance**
+
 * Caching
 
 ### Testing
+
 * Testing in isolation for funtionality, reliability, latency, performance, security, etc.
 * Testing with JSON payloads over HTTP, HTTPS, JMS, & MQ
 * Unit testing: individual operations of API in logical unit divisions to ID imperfections in early stages
@@ -170,4 +194,3 @@ This project uses Avilash Kumar's [TikTokAPI](https://github.com/avilash/TikTokA
 * Security testing: checking for external threats, validation, access control, and data encryption
 * Penetration testing: to find vulnerabilities in system or codebase that could be exploited by attackers, testing vulnerability of functions and security assets
 * Fuzz testing: utilizes random input data (aka fuzz) to rest reliability and ensure reliability in worst-case
-
