@@ -1,5 +1,6 @@
 # Architectural Decision Record
-Social Media Political Analysis (SMPA) Pipeline 
+
+Social Media Political Analysis (SMPA) Pipeline
 
 ## Background
 
@@ -27,47 +28,58 @@ The ETL pipeline code will call multiple APIs (NewsAPI, Tweepy, & TikTok), trans
 1. NewsAPI finds top news by day
 2. Parse news story titles and their article text into individual words and phrases
 3. Determine 3 most important individual words and phrases
-4. Use key words as filters for TikTok and Twitter data 
+4. Use key words as filters for TikTok and Twitter data
 5. Count the number of tweets and TikToks mentioning key words and phrases
 
-### ??
+### Ownership
 
-### ???
+### Success Metrics
 
+* Architecture needs
+  * uptime/latency
+  * monitoring
+  * logging
+  * alerting
+* data speeds
+
+### API
+
+Data is served through a Flask API.
+
+* Schema
 
 # Solution
 
 ## Summary
 
-PgAdmin UI
-Postgres as DW
+~PgAdmin UI~
+~Postgres as DW~
 
+1. [x] Extract results of a call to NewsAPI into Snowflake
+2. [x] Transform data in Python: 
+    * Parse news story title & article into individual words/phrases
+    * Count most important individual words & phrases
+3. [x] Use top 3 most important words & phrases to search TikTok & Twitter APIs
+4. [x] Load resulting JSON data into Snowflake internal table # TODO partition social media data by social media service?
 
 ### Architecture Diagram
 
 <//>
 
-## Data Lifecycle & <?>
+### Data Schema & Lifecycle
 
-Data is batch-ingested into ...
+This pipeline calls APIs, loads their data into a Snowflake `INGEST` stage (which takes advantage of Snowflake's dynamic partitioning to).
 
-## API
+* Data is batch-ingested into ...
+* Caching
 
-Data is served through a Flask API
+### Security
 
-### Technology
-
-* GraphQL: more efficient than REST due to compound requests pulling data in one lump sum
-
-### Security 
-
-* Rate-limiting factors
+* Rate-limiting factors (API)
 * Firewall
 * TLS encryption
 
-### Performance
-
-* Caching
+### Logging, Alerting, & Monitoring
 
 ### Testing
 
@@ -83,10 +95,14 @@ Data is served through a Flask API
 
 ## Rejected Solutions
 
-### Kafka streaming
+* GraphQL
+  * Why: more efficient than REST due to compound requests pulling data in one lump sum
+  * Why not?
 
-* no need to stream updates
+* Kafka streaming
+  * Why:
+  * Why not: no need to stream updates
 
-### Transforming with dbt
-
-* don't need dbt with pyspark sql transformations
+* Transforming with dbt
+  * Why:
+  * Why not: don't need dbt with pyspark sql transformations
